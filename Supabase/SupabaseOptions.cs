@@ -1,5 +1,6 @@
 ﻿using Supabase.Gotrue;
 using System.Collections.Generic;
+using System.Net.Http;
 using Supabase.Gotrue.Interfaces;
 
 namespace Supabase
@@ -65,5 +66,11 @@ namespace Supabase
         /// The Supabase Functions Url Format
         /// </summary>
         public string FunctionsUrlFormat { get; set; } = "{0}/functions/v1";
+
+        /// <summary>
+        /// Optional HttpClient for Functions client. If provided, this HttpClient will be used
+        /// instead of creating a new one. Useful for configuring proxy or custom handlers.
+        /// </summary>
+        public HttpClient? FunctionsHttpClient { get; set; }
     }
 }

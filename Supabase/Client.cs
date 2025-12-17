@@ -188,7 +188,9 @@ namespace Supabase
             _postgrest = new Postgrest.Client(restUrl, new Postgrest.ClientOptions { Schema = schema });
             _postgrest.GetHeaders = GetAuthHeaders;
 
-            _functions = new Functions.Client(functionsUrl);
+            _functions = _options.FunctionsHttpClient != null
+                ? new Functions.Client(functionsUrl, _options.FunctionsHttpClient)
+                : new Functions.Client(functionsUrl);
             _functions.GetHeaders = GetAuthHeaders;
 
             _storage = new Storage.Client(storageUrl, _options.StorageClientOptions);
